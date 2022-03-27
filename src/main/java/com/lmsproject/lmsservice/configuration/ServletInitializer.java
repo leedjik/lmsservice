@@ -1,5 +1,6 @@
-package com.lmsproject.lmsservice;
+package com.lmsproject.lmsservice.configuration;
 
+import com.lmsproject.lmsservice.LmsserviceApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 

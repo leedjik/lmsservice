@@ -17,4 +17,16 @@ spring:
   freemarker:
     cache: false
 
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: leedjik1531@gmail.com
+    password: pqwddfbumhoihvsz
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+
+
 
