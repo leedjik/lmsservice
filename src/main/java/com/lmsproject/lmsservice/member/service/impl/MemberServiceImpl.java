@@ -1,5 +1,7 @@
 package com.lmsproject.lmsservice.member.service.impl;
 
+import com.lmsproject.lmsservice.admin.dto.MemberDto;
+import com.lmsproject.lmsservice.admin.mapper.MemberMapper;
 import com.lmsproject.lmsservice.components.MailComponents;
 import com.lmsproject.lmsservice.member.entity.Member;
 import com.lmsproject.lmsservice.member.exception.MemberNotEmailAuthException;
@@ -28,6 +30,9 @@ public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepository;
     private final MailComponents mailComponents;
+
+    private final MemberMapper memberMapper;
+
     /**
     * 회원가입 사용자가 입력한 정보를 DB에 회원 등록
      * */
@@ -114,9 +119,13 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public List<Member> list() {
+    public List<MemberDto> list() {
 
-        return memberRepository.findAll();
+        MemberDto parameter = new MemberDto();
+        List<MemberDto> list = memberMapper.selectList(parameter);
+
+        return list;
+        //return memberRepository.findAll();
 
     }
 
