@@ -1,8 +1,8 @@
 package com.lmsproject.lmsservice.member.controller;
 
 import com.lmsproject.lmsservice.member.model.MemberInput;
-import com.lmsproject.lmsservice.member.service.MemberService;
 import com.lmsproject.lmsservice.member.model.ResetPasswordInput;
+import com.lmsproject.lmsservice.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

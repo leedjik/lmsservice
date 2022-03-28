@@ -28,5 +28,9 @@ spring:
           starttls:
             enable: true
 
-
+mybatis:
+  mapper-locations: mybatis/**/*.xml  # XML 위치
+  configuration:
+    map-underscore-to-camel-case: true # underscore를 camel로 자동으로 바꿔주기
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 로그 찍기
 

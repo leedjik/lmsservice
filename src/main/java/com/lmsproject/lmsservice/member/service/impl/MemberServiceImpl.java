@@ -112,4 +112,36 @@ public class MemberServiceImpl implements MemberService {
     
         return false;
     }
+
+    @Override
+    public List<Member> list() {
+
+        return memberRepository.findAll();
+
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+        Optional<Member> optionalMember = memberRepository.findById(username);
+        if (!optionalMember.isPresent()) {
+            throw new UsernameNotFoundException("회원 정보가 존재하지 않습니다.");
+        }
+
+        Member member = optionalMember.get();
+
+        if(!member.isEmailAuthYn()){
+            throw new MemberNotEmailAuthException("이메일 활성화 이후에 로그인을 해주세요.");
+        }
+        
+
+        List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+        grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+
+        if(member.isAdminYn()){
+            grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        }
+
+        return new User(member.getUserId(), member.getPassword(), grantedAuthorities);
+    }
 }

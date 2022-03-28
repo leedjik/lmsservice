@@ -31,7 +31,7 @@ public class Member {
     private String resetPasswordKey;
     private LocalDateTime resetPasswordLimitDt;
     
-    private boolean adminYn;
+    private boolean adminYn;    //관리자 여부
     
     private String userStatus;//이용가능한상태, 정지상태
     

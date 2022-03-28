@@ -45,6 +45,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 )
                 .permitAll();
 
+        // ADMIN 페이지에 접속했을 때, ROLE_ADMIN이 설정되어 있어야 합니다.
+        http.authorizeHttpRequests()
+                        .antMatchers("/admin/**")
+                                .hasAnyAuthority("ROLE_ADMIN");
+
         // 로그인 페이지 설정
         http.formLogin()
                 .loginPage("/member/login")
@@ -56,21 +61,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
                 .logoutSuccessUrl("/")
                 .invalidateHttpSession(true);
-        
+
+        // 접근불가(exception)발생했을 때, /error/denied 페이지 출력
         http.exceptionHandling()
                 .accessDeniedPage("/error/denied");
 
         super.configure(http);
     }
 
-/*    @Override
+    @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
         auth.userDetailsService(memberService)
                 .passwordEncoder(getPasswordEncoder());
 
         super.configure(auth);
-    }*/
-
+    }
 
 }
