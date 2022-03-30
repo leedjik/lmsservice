@@ -27,3 +27,5 @@ public interface MemberService extends UserDetailsService {
      */
     List<MemberDto> list();
 }
+
+

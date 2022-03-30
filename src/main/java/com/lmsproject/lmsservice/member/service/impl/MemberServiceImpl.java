@@ -122,12 +122,13 @@ public class MemberServiceImpl implements MemberService {
     public List<MemberDto> list() {
 
         MemberDto parameter = new MemberDto();
-        List<MemberDto> list = memberMapper.selectList(parameter);
 
-        return list;
-        //return memberRepository.findAll();
+        return memberMapper.selectList(parameter);
 
+        // MyBatis 가 아닌 SPA 를 사용했을 경우
+        // return memberRepository.findAll();
     }
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

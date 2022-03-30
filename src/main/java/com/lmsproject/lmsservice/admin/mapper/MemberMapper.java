@@ -9,9 +9,6 @@ import java.util.List;
 @Mapper
 public interface MemberMapper {
 
-    default List<MemberDto> selectList(MemberDto memberDto) {
-
-        return null;
-    }
+    List<MemberDto> selectList(MemberDto memberDto);
 }
 

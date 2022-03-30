@@ -3,9 +3,12 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lmsproject.lmsservice.admin.mapper.MemberMapper">
-    <select id="selectList" resultType="com.lmsproject.lmsservice.admin.dto">
+
+    <!--실질적으로 쿼리가 실행되는 부분-->
+    <select id="selectList" resultType="com.lmsproject.lmsservice.admin.dto.MemberDto">
         select * from member;
     </select>
+
 </mapper>
 
 
