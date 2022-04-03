@@ -2,6 +2,7 @@ package com.lmsproject.lmsservice.member.service.impl;
 
 import com.lmsproject.lmsservice.admin.dto.MemberDto;
 import com.lmsproject.lmsservice.admin.mapper.MemberMapper;
+import com.lmsproject.lmsservice.admin.model.MemberParam;
 import com.lmsproject.lmsservice.components.MailComponents;
 import com.lmsproject.lmsservice.member.entity.Member;
 import com.lmsproject.lmsservice.member.exception.MemberNotEmailAuthException;
@@ -119,11 +120,11 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public List<MemberDto> list() {
+    public List<MemberDto> list(MemberParam memberParam) {
 
-        MemberDto parameter = new MemberDto();
+        //MemberDto parameter = new MemberDto();
 
-        return memberMapper.selectList(parameter);
+        return memberMapper.selectList(memberParam);
 
         // MyBatis 가 아닌 SPA 를 사용했을 경우
         // return memberRepository.findAll();

@@ -1,6 +1,7 @@
 package com.lmsproject.lmsservice.admin.mapper;
 
 import com.lmsproject.lmsservice.admin.dto.MemberDto;
+import com.lmsproject.lmsservice.admin.model.MemberParam;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -9,6 +10,6 @@ import java.util.List;
 @Mapper
 public interface MemberMapper {
 
-    List<MemberDto> selectList(MemberDto memberDto);
+    List<MemberDto> selectList(MemberParam memberDto);
 }
 
