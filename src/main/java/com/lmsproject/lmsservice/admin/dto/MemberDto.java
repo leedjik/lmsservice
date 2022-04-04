@@ -2,7 +2,9 @@ package com.lmsproject.lmsservice.admin.dto;
 
 import lombok.Data;
 
+
 import java.time.LocalDateTime;
+
 
 @Data
 public class MemberDto {
@@ -21,4 +23,8 @@ public class MemberDto {
     LocalDateTime resetPasswordLimitDt;
 
     boolean adminYn;
+
+    // 추가 컬럼
+    long totalCount;
+    long seq;
 }

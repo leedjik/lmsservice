@@ -5,6 +5,40 @@
 <mapper namespace="com.lmsproject.lmsservice.admin.mapper.MemberMapper">
 
     <!--실질적으로 쿼리가 실행되는 부분-->
+    <select id="selectListCount"
+            parameterType="com.lmsproject.lmsservice.admin.model.MemberParam"
+            resultType="long">
+
+        select count(*)
+        from member
+        where 1 = 1
+
+        <if test="searchType != null and searchValue != null">
+            <choose>
+                <when test="searchType == 'userId'">
+                    and user_id like concat('%', #{searchValue}, '%')
+                </when>
+                <when test="searchType == 'userName'">
+                    and user_name like concat('%', #{searchValue}, '%')
+                </when>
+                <when test="searchType == 'phone'">
+                    and phone like concat('%', #{searchValue}, '%')
+                </when>
+                <otherwise>
+                    and
+                    (
+                    user_id like concat('%', #{searchValue}, '%')
+                    or
+                    user_name like concat('%', #{searchValue}, '%')
+                    or
+                    phone like concat('%', #{searchValue}, '%')
+                    )
+                </otherwise>
+            </choose>
+        </if>
+
+    </select>
+
     <select id="selectList"
             parameterType="com.lmsproject.lmsservice.admin.model.MemberParam"
             resultType="com.lmsproject.lmsservice.admin.dto.MemberDto">
@@ -36,7 +70,7 @@
             </choose>
         </if>
 
-
+        limit #{pageStart}, #{pageEnd}
     </select>
 
 </mapper>
