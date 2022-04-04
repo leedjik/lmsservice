@@ -38,5 +38,15 @@ public class AdminMemberController {
 
         return "admin/member/list";
     }
+    @GetMapping("/admin/member/detail.do")
+    public String detail(Model model, MemberParam memberParam){
+
+        memberParam.init();
+
+        MemberDto member = memberService.detail(memberParam.getUserId());
+        model.addAttribute("member", member);
+
+        return "admin/member/detail";
+    }
 
 }
