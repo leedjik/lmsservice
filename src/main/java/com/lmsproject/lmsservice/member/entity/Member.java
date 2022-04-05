@@ -14,11 +14,10 @@ import java.time.LocalDateTime;
 @Builder
 @Data
 @Entity
-public class Member {
-    
+public class Member implements MemberCode{
+
     @Id
     private String userId;
-
     private String userName;
     private String phone;
     private String password;

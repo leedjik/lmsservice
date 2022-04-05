@@ -29,11 +29,12 @@ public class MemberDto {
     LocalDateTime resetPasswordLimitDt;
 
     boolean adminYn;
+    String userStatus;
 
     // 추가 컬럼
     long totalCount;
     long seq;
-\
+
     public static MemberDto of(Member member){
 
         return MemberDto.builder()
@@ -42,12 +43,13 @@ public class MemberDto {
                 .phone(member.getPhone())
                 //.password(member.getPassword())
                 .regDt(member.getRegDt())
-                .emailAuthYn(member.getEmailAuthYn())
+                .emailAuthYn(member.isEmailAuthYn())
                 .emailAuthDt(member.getEmailAuthDt())
                 .emailAuthKey(member.getEmailAuthKey())
                 .resetPasswordKey(member.getResetPasswordKey())
                 .resetPasswordKey(member.getResetPasswordKey())
                 .adminYn(member.isAdminYn())
+                .userStatus(member.getUserStatus())
                 .build();
     }
 }
