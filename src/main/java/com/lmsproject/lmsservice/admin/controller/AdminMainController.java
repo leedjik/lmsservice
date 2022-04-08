@@ -1,4 +1,4 @@
-package com.lmsproject.lmsservice.admin;
+package com.lmsproject.lmsservice.admin.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
