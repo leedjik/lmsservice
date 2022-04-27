@@ -2,25 +2,31 @@ package com.lmsproject.lmsservice.admin.service;
 
 import com.lmsproject.lmsservice.admin.dto.CategoryDto;
 import com.lmsproject.lmsservice.admin.entity.Category;
+import com.lmsproject.lmsservice.admin.model.CategoryInput;
 import com.lmsproject.lmsservice.admin.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
-public class CategoryServiceImple implements CategoryService{
+public class CategoryServiceImpl implements CategoryService{
     //CRUD 구현 class
 
     private final CategoryRepository categoryRepository;
+    private Sort getSortBySortValueDesc(){
+        return Sort.by(Sort.Direction.DESC, "sortValue");
+    }
 
     @Override
     public List<CategoryDto> list() {
        // List<CategoryDto> categoryDtoList = new ArrayList<>();
-        List<Category> categories = categoryRepository.findAll();
+
+
+        List<Category> categories = categoryRepository.findAll(getSortBySortValueDesc());
 
         return CategoryDto.of(categories);
 
@@ -57,13 +63,26 @@ public class CategoryServiceImple implements CategoryService{
     }
 
     @Override
-    public boolean update(CategoryDto categoryDto) {
-        return false;
+    public boolean update(CategoryInput categoryInput) {
+        Optional<Category> optionalCategory = categoryRepository.findById(categoryInput.getId());
+
+        if(optionalCategory.isPresent()){
+            Category category = optionalCategory.get();
+            category.setCategoryName(categoryInput.getCategoryName());
+            category.setSortValue(categoryInput.getSortValue());
+            category.setUsingYn(categoryInput.isUsingYn());
+            categoryRepository.save(category);
+        }
+
+        return true;
     }
 
     @Override
     public boolean del(long id) {
-        return false;
+
+        categoryRepository.deleteById(id);
+
+        return true;
     }
 
 

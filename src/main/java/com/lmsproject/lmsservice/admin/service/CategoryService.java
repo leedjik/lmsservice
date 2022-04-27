@@ -2,6 +2,7 @@ package com.lmsproject.lmsservice.admin.service;
 
 import com.lmsproject.lmsservice.admin.dto.CategoryDto;
 import com.lmsproject.lmsservice.admin.entity.Category;
+import com.lmsproject.lmsservice.admin.model.CategoryInput;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public interface CategoryService {
     /**
      * 카테고리 수정
      */
-    boolean update(CategoryDto categoryDto);
+    boolean update(CategoryInput categoryInput);
 
     /**
      * 카테고리 삭제
